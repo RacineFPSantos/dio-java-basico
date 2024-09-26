@@ -3,6 +3,7 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import bancoDigital.main.CaixaDigital;
 import exceptions.ParametrosInvalidosException;
 
 public class ContaTerminal {
@@ -10,6 +11,10 @@ public class ContaTerminal {
 	private static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		MainMenu();
+	}
+	
+	private static void MainMenu() {
 		Integer option = 0;		
 		System.out.println("QUAL PROJETO VOCÊ DESEJA VER?");
 		
@@ -18,6 +23,7 @@ public class ContaTerminal {
 				System.out.println("Por favor, qual projeto deseja ver");
 				System.out.println("[0] - Conta Banco");
 				System.out.println("[1] - Controle de Fluxo");
+				System.out.println("[2] - Caixa Digital");
 				option  = sc.nextInt();
 				sc.nextLine();
 				break;
@@ -35,6 +41,11 @@ public class ContaTerminal {
 				}
 				case 1: {
 					DesafioControleFluxo();
+					break;
+				}
+				case 2: {
+					CaixaDigital caixaDigital = new CaixaDigital();
+					caixaDigital.usarCaixa();
 					break;
 				}
 				default: {
