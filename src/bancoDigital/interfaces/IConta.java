@@ -1,6 +1,6 @@
-package bancoDigital.interfaces;
+package bancodigital.interfaces;
 
-import bancoDigital.model.Conta;
+import bancodigital.model.Conta;
 
 public interface IConta {
 	public void sacar(double valor);

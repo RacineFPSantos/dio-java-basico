@@ -1,20 +1,21 @@
-package bancoDigital.main;
+package bancodigital.main;
 
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
-import bancoDigital.model.BancoDigital;
-import bancoDigital.model.Cliente;
-import bancoDigital.model.Conta;
-import bancoDigital.model.ContaCorrente;
-import bancoDigital.model.ContaPoupanca;
+import bancodigital.model.Banco;
+import bancodigital.model.Cliente;
+import bancodigital.model.Conta;
+import bancodigital.model.ContaCorrente;
+import bancodigital.model.ContaPoupanca;
 
 public class CaixaDigital {
 	private static Scanner sc = new Scanner(System.in);
-	private BancoDigital bancoDigital= null;
+	private Banco Banco= null;
 	
 	public CaixaDigital () {
-		bancoDigital = new BancoDigital();
+		Banco = new Banco();
 	}
 	
 	public void usarCaixa() {
@@ -26,7 +27,8 @@ public class CaixaDigital {
 				System.out.println("Por favor, qual opção deseja usar");
 				System.out.println("[0] - Criar Conta Corrente");
 				System.out.println("[1] - Criar Conta Poupança");
-				System.out.println("[2] - Testar Caixa");
+				System.out.println("[2] - Acessar Conta");
+				System.out.println("[3] - Testar Caixa");
 				option  = sc.nextInt();
 				sc.nextLine();
 			} catch (InputMismatchException e) {
@@ -80,16 +82,16 @@ public class CaixaDigital {
 	
 	private void CriarContaCorrente() {
 		Cliente cliente = CriarNovoCliente();		
-		Conta cc = new ContaCorrente(cliente);
-		
-		bancoDigital.
+		Conta cc = new ContaCorrente(cliente);		
+		Banco.adicionarNovaConta(cc);
 		cc.imprimirExtrato();
 	}
 	
 	private void CriarContaPoupanca() {
-		Cliente cliente = CriarNovoCliente();
-		
+		Cliente cliente = CriarNovoCliente();		
 		Conta cp = new ContaPoupanca(cliente);
+		Banco.adicionarNovaConta(cp);
+		
 		cp.imprimirExtrato();	
 	}
 	
@@ -100,6 +102,22 @@ public class CaixaDigital {
 		return cliente;
 	}
 	
+	private void acessarConta() {
+		System.out.println("Digite o nome de usuário");
+		
+		//Receber nome da pessoa
+		String nome = "";
+		
+		
+		Optional<Conta> conta = Banco.bancoFindByNomeCliente(nome);		
+		if(!conta.isPresent()) {
+			System.out.println("Essa pessoa não tem conta nesse banco.");
+			
+			//Deseja criar?
+		}
+	}
+	
+	//Metodos referentes ao inputs do Menu
 	private static int inputInteger(String msg, String erroMsg) {
 		int param = 0;
 		

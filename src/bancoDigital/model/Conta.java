@@ -1,6 +1,6 @@
-package bancoDigital.model;
+package bancodigital.model;
 
-import bancoDigital.interfaces.IConta;
+import bancodigital.interfaces.IConta;
 
 public abstract class Conta implements IConta{
 	private static final int AGENCIA_PADRAO = 0001;
@@ -50,5 +50,9 @@ public abstract class Conta implements IConta{
 	
 	public double getSaldo() {
 		return saldo;
+	}
+	
+	public Cliente getCliente() {
+		return cliente;
 	}
 }

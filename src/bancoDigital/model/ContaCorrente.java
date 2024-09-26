@@ -1,4 +1,4 @@
-package bancoDigital.model;
+package bancodigital.model;
 
 public class ContaCorrente extends Conta {
 

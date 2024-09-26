@@ -3,7 +3,8 @@ package main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import bancoDigital.main.CaixaDigital;
+import bancodigital.main.CaixaDigital;
+import desafiodiopoo.dominio.main.DesafioDioPOO;
 import exceptions.ParametrosInvalidosException;
 
 public class ContaTerminal {
@@ -24,6 +25,7 @@ public class ContaTerminal {
 				System.out.println("[0] - Conta Banco");
 				System.out.println("[1] - Controle de Fluxo");
 				System.out.println("[2] - Caixa Digital");
+				System.out.println("[3] - Desafio Dio POO");
 				option  = sc.nextInt();
 				sc.nextLine();
 				break;
@@ -46,6 +48,11 @@ public class ContaTerminal {
 				case 2: {
 					CaixaDigital caixaDigital = new CaixaDigital();
 					caixaDigital.usarCaixa();
+					break;
+				}
+				case 3: {
+					DesafioDioPOO ddp = new DesafioDioPOO();
+					ddp.TestarDominio();
 					break;
 				}
 				default: {

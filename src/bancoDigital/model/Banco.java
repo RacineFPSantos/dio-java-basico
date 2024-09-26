@@ -1,9 +1,10 @@
-package bancoDigital.model;
+package bancodigital.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class BancoDigital {
+public class Banco {
 	private String nome;	
 	private List<Conta> contas = new ArrayList<Conta>();
 	
@@ -17,6 +18,18 @@ public class BancoDigital {
 		}
 	}
 	
+	public Optional<Conta> bancoFindByNomeCliente(String nomeCliente) {
+		Optional<Conta> contaEncontrada = contas.stream()
+                .filter(conta -> conta.getCliente().getNome().equals(nomeCliente)) 
+                .findFirst();
+		
+		if(contaEncontrada.isPresent()) {
+			return contaEncontrada;
+		} else {
+			return null;
+		}		
+	}
+	
 	
 	private boolean verificaSeExisteConta(Conta _conta) {
 		boolean exists = contas.stream()
@@ -24,6 +37,8 @@ public class BancoDigital {
 		
 		return exists;
 	}
+	
+
 
 	public String getNome() {
 		return nome;
@@ -32,4 +47,7 @@ public class BancoDigital {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+
+
 }
